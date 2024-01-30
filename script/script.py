@@ -13,6 +13,9 @@ for line in lines:
 
     # If the line starts with 'folder', it's a directory
     if line.lower().startswith('folder'):
+        # Remove 'folder' from the directory name
+        line = line.replace('folder ', '')
+
         # Create the directory under the root directory
         current_dir = os.path.join('test', line)
         os.makedirs(current_dir, exist_ok=True)
