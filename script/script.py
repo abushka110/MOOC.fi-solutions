@@ -1,3 +1,7 @@
+# Script to create directories and python files, from txt file.
+# directories need to be marked "folders" at the beginning
+# python file will be created in the last scanned directory
+
 import os
 
 # Open the file
