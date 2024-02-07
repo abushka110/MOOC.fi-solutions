@@ -1,10 +1,10 @@
 # solution 1, while loop
-def chessboard(columns):
+def chessboard(size):
     index1 = 0
     index2 = 0
     binary = ""
-    while index1 < columns:
-        while index2 < columns:
+    while index1 < size:
+        while index2 < size:
             if (index1 + index2) % 2 == 0:
                 binary += "1"
             else:
@@ -16,10 +16,10 @@ def chessboard(columns):
         index2 = 0
 
 # # solution 2, for loop
-# def chessboard(columns):
+# def chessboard(size):
 #     binary = ""
-#     for x in range(0, columns):
-#         for j in range(0, columns):
+#     for x in range(0, size):
+#         for j in range(0, size):
 #             if (x + j) % 2 == 0:
 #                 binary += "1"
 #             else:
