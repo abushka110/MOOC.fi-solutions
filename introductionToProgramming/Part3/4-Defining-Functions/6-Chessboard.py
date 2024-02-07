@@ -1,9 +1,9 @@
 # solution 1, while loop
 def chessboard(size):
     index1 = 0
-    index2 = 0
-    binary = ""
     while index1 < size:
+        binary = ""
+        index2 = 0
         while index2 < size:
             if (index1 + index2) % 2 == 0:
                 binary += "1"
@@ -11,9 +11,7 @@ def chessboard(size):
                 binary += "0"
             index2 +=  1
         print(binary)
-        binary = ""
         index1 += 1
-        index2 = 0
 
 # # solution 2, for loop
 # def chessboard(size):
