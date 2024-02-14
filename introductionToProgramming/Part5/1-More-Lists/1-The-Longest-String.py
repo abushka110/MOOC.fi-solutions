@@ -7,7 +7,6 @@ def longest(words: list):
             longestWord = word
     return longestWord
 
-
 # test
 if __name__ == "__main__":
     strings = ["hi", "hiya", "hello", "howdydoody", "hi there"]
