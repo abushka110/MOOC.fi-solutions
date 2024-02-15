@@ -15,11 +15,10 @@ def sudoku_block_correct(sudoku: list):
 # function check if rows are correct in sudoku
 def sudoku_row_correct(sudoku: list):
     for row_no in range(0, 7):
-        numbers = []
-        for element in sudoku[row_no]:
-            if element > 0 and element in numbers:
+        check_list = list(range(1, 10))
+        for number in check_list:
+            if sudoku[row_no].count(number) > 1:
                 return False
-            numbers.append(element)
     return True
 
 # function check if columns are correct in sudoku
