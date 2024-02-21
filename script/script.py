@@ -1,7 +1,3 @@
-# Script to create directories and python files, from txt file.
-# directories need to be marked "folders" at the beginning
-# python file will be created in the last scanned directory
-
 import os
 
 # Function to format the directory or file name
@@ -37,5 +33,10 @@ for line in lines:
         line = line.replace('Programming exercise: ', '')
         
         # Create a Python file in the current directory
-        with open(os.path.join(current_dir, f"{format_name(line)}.py"), 'w') as f:
-            pass
+        file_path = os.path.join(current_dir, f"{format_name(line)}.py")
+        with open(file_path, 'w') as f:
+            # Add lines to each created Python file
+            f.write("# solution\n\n")
+            f.write("# test\n")
+            f.write("if __name__ == \"__main__\":\n")
+            f.write("    pass  # Add your test code here\n")
