@@ -10,8 +10,7 @@ def find_words(word: str):
     found_words_list = []
     for word_search in words_list:
         # check if ord has a dot
-        word_dot = word.find(".")
-        if word_dot != -1 and len(word) == len(word_search):
+        if "." in word and len(word) == len(word_search):
             index = 0
             for char_word, char_search in zip(word, word_search):
                 if char_word != '.' and char_word != char_search:
