@@ -13,4 +13,4 @@ def generate_strong_password(length: int, add_num: bool, add_special_char: bool)
 # test
 if __name__ == "__main__":
     for i in range(10):
-    print(generate_strong_password(8, True, True))
+        print(generate_strong_password(8, True, True))
