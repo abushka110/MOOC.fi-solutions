@@ -8,35 +8,30 @@ print(start_date)
 days_plus = int(input("How many days: "))
 print("Please type in screen time in minutes on each day (TV computer mobile):")
 
-screen_time_data = []
+screen_time_data = {}
 
-with open(filename, "a") as write_file:
-    for i in range(days_plus):
-        current_date = start_date + timedelta(days = i)
-        screen_time = input(f'Screen time {current_date.strftime("%d.%m.%Y")}: ')
-        screen_time_data.append(f'{current_date.strftime("%d.%m.%Y")}: {screen_time.replace(" ", "/")}')
+end_date = start_date
+screen_time = input(f'Screen time {end_date.strftime("%d.%m.%Y")}: ')
+screen_time_data[end_date.strftime("%d.%m.%Y")] = screen_time.replace(" ", "/")
 
-# # Calculating total and average minutes
-# total_minutes = 0
-# for day in screen_time_data:
-#     for minutes in day.split('/'):
-#         total_minutes += int(minutes)
+for i in range(days_plus - 1):
+    end_date += timedelta(days = 1)
+    screen_time = input(f'Screen time {end_date.strftime("%d.%m.%Y")}: ')
+    screen_time_data[end_date.strftime("%d.%m.%Y")] = screen_time.replace(" ", "/")
 
-# average_minutes = total_minutes / days_plus
+print(screen_time_data)
 
-# # Writing summary to the file
-# with open(filename, "a") as write_file:
-#     write_file.write(f'Time period: {start_date.strftime("%d.%m.%Y")}-{(start_date + timedelta(days=days_plus-1)).strftime("%d.%m.%Y")}\n')
-#     write_file.write(f'Total minutes: {total_minutes}\n')
-#     write_file.write(f'Average minutes: {average_minutes}\n')
-
-#     # Writing screen time data
-#     for i in range(days_plus):
-#         current_date = start_date + timedelta(days=i)
-#         write_file.write(f'{current_date.strftime("%d.%m.%Y")}: {screen_time_data[i].replace(" ", "/")}\n')
+with open(filename, "w") as write_file:
+    write_file.write(f'Time period: {start_date.strftime("%d.%m.%Y")}-{end_date.strftime("%d.%m.%Y")}\n')
+    # write total minutes
+    total_time = 0
+    for key in screen_time_data.keys():
+        time = screen_time_data[key].split("/")
+        total_time += int(time[0]) + int(time[1]) + int(time[2])
+    write_file.write(f'Total minutes: {total_time}\n')
+    write_file.write(f'Average minutes: {total_time / days_plus}\n')
+    
+    for key in screen_time_data.keys():
+        write_file.write(f'{key}: {screen_time_data[key]}\n')
 
 print("Data stored in file late_june.txt")
-
-# test
-if __name__ == "__main__":
-    pass  # Add your test code here
