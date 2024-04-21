@@ -1,30 +1,37 @@
 # solution
 def run(program: list):
     output_result = []
+    # dict to store variables value
     variables_dict = {}
     jump_point = ""
     for command_full in program:
-        allowed_characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        allowed_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        # function to change variable value
         if "MOV" in command_full:
+            # check if the value to assign is number or other variable
             if command_full[6:].isdigit():
                 variables_dict[command_full[4]] = int(command_full[6:])
             elif command_full[6:] in variables_dict:
                 variables_dict[command_full[4]] = variables_dict[command_full[6:]]
+        # function to add two numbers
         elif "ADD" in command_full:
             if command_full[6] in allowed_characters:
                 variables_dict[command_full[4]] += variables_dict[command_full[6]]
             else:
                 variables_dict[command_full[4]] += int(command_full[6:])
+        # function to subtraction two numbers
         elif "SUB" in command_full:
             if command_full[6] in allowed_characters:
                 variables_dict[command_full[4]] -= variables_dict[command_full[6]]
             else:
                 variables_dict[command_full[4]] -= int(command_full[6:])
+        # function to multiplicate two numbers
         elif "MUL" in command_full:
             if command_full[6] in allowed_characters:
                 variables_dict[command_full[4]] *= variables_dict[command_full[6]]
             else:
                 variables_dict[command_full[4]] *= int(command_full[6:])
+        # function to print variable value
         elif "PRINT" in command_full:
             if command_full[6] in variables_dict:
                 output_result.append(variables_dict[command_full[6:]])
