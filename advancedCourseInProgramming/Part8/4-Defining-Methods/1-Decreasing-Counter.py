@@ -9,16 +9,15 @@ class DecreasingCounter:
     def decrease(self):
         if self.value > 0:
             self.value -= 1
+    
+    def set_to_zero(self):
+        self.value = 0
 
     # Write the rest of the methods here!
 
 # test
 if __name__ == "__main__":
-    counter = DecreasingCounter(2)
+    counter = DecreasingCounter(100)
     counter.print_value()
-    counter.decrease()
-    counter.print_value()
-    counter.decrease()
-    counter.print_value()
-    counter.decrease()
+    counter.set_to_zero()
     counter.print_value()
