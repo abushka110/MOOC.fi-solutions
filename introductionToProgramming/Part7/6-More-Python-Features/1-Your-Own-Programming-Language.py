@@ -2,7 +2,7 @@
 def run(program: list):
     output_result = []
     variables_dict = {}
-    
+    jump_point = ""
     for command_full in program:
         allowed_characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         if "MOV" in command_full:
