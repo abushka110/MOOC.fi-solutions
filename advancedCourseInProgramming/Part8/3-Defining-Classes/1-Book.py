@@ -1,5 +1,18 @@
 # solution
+class Book:
+    def __init__(self, name: str, author: str, genre: str, year: int):
+        self.name = name
+        self.author = author
+        self.genre = genre
+        self.year = year
 
 # test
 if __name__ == "__main__":
-    pass  # Add your test code here
+    python = Book("Fluent Python", "Luciano Ramalho", "programming", 2015)
+    everest = Book("High Adventure", "Edmund Hillary", "autobiography", 1956)
+
+    print(f"{python.author}: {python.name} ({python.year})")
+    print(f"The genre of the book {everest.name} is {everest.genre}")
+    # Sample output
+    # Luciano Ramalho: Fluent Python (2015)
+    # The genre of the book High Adventure is autobiography
