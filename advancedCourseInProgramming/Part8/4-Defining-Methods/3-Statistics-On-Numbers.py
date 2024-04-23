@@ -1,4 +1,3 @@
-# solution
 # Write your solution here!
 class  NumberStats:
     def __init__(self):
@@ -27,3 +26,14 @@ while ask_num != -1:
 
 print(f"Sum of numbers: {stats.get_sum()}")
 print(f"Mean of numbers: {stats.average()}")
+
+even_nums = []
+odd_nums = []
+for num in stats.numbers:
+    if num % 2 == 0:
+        even_nums.append(num)
+    else:
+        odd_nums.append(num)
+
+print(f"Sum of even numbers: {sum(even_nums)}")
+print(f"Sum of odd numbers: {sum(odd_nums)}")
