@@ -29,7 +29,11 @@ class PaymentTerminal:
         # increase the number of lunches sold, and return the appropriate change.
         # If the payment passed as an argument is not large enough to cover the price,
         # the lunch is not sold, and the entire sum is returned.
-        pass
+        if payment >= 2.5:
+            self.lunches += 1
+            self.funds += 2.5
+            payment -= 2.5
+        return payment
 
     def eat_special(self, payment: float):
         # A special lunch costs 4.30 euros.
@@ -37,7 +41,11 @@ class PaymentTerminal:
         # increase the number of specials sold, and return the appropriate change.
         # If the payment passed as an argument is not large enough to cover the price,
         # the lunch is not sold, and the entire sum is returned.
-        pass
+        if payment >= 4.3:
+            self.funds += 4.3
+            payment -= 4.3
+            self.specials += 1
+        return payment
 
     def eat_lunch_lunchcard(self, card: LunchCard):
         # A regular lunch costs 2.50 euros.
@@ -57,11 +65,28 @@ class PaymentTerminal:
 
 # test
 if __name__ == "__main__":
-    card = LunchCard(10)
-    print("Balance", card.balance)
-    result = card.subtract_from_balance(8)
-    print("Payment successful:", result)
-    print("Balance", card.balance)
-    result = card.subtract_from_balance(4)
-    print("Payment successful:", result)
-    print("Balance", card.balance)
+    # test 1
+    # card = LunchCard(10)
+    # print("Balance", card.balance)
+    # result = card.subtract_from_balance(8)
+    # print("Payment successful:", result)
+    # print("Balance", card.balance)
+    # result = card.subtract_from_balance(4)
+    # print("Payment successful:", result)
+    # print("Balance", card.balance)
+
+    # test 2
+    exactum = PaymentTerminal()
+
+    change = exactum.eat_lunch(10)
+    print("The change returned was", change)
+
+    change = exactum.eat_lunch(5)
+    print("The change returned was", change)
+
+    change = exactum.eat_special(4.3)
+    print("The change returned was", change)
+
+    print("Funds available at the terminal:", exactum.funds)
+    print("Regular lunches sold:", exactum.lunches)
+    print("Special lunches sold:", exactum.specials)
