@@ -8,7 +8,7 @@ class LunchCard:
         self.balance += amount
 
     def subtract_from_balance(self, amount: float):
-        if self.balance > amount:
+        if self.balance >= amount:
             self.balance -= amount
             return True
         else:
