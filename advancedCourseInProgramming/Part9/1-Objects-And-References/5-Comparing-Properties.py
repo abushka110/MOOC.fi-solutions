@@ -7,10 +7,7 @@ class RealProperty:
         self.price_per_sqm = price_per_sqm
 
     def bigger(self, compared_to):
-        if self.square_metres > compared_to.square_metres:
-            return True
-        else:
-            return False
+        return self.square_metres > compared_to.square_metres
         
     def price_difference(self, compared_to):
         return abs((self.price_per_sqm * self.square_metres) - (compared_to.price_per_sqm * compared_to.square_metres))
@@ -20,7 +17,6 @@ class RealProperty:
             return True
         else:
             return False
-
 
 # test
 if __name__ == "__main__":
