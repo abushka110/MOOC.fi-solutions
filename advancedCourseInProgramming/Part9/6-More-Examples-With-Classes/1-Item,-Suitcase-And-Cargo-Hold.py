@@ -20,7 +20,10 @@ class Suitcase:
         self.__items_in_case = []
 
     def __str__(self) -> str:
-        return f"{len(self.__items_in_case)} items ({self.__current_weight} kg)"
+        if len(self.__items_in_case) == 1:
+            return f"{len(self.__items_in_case)} item ({self.__current_weight} kg)"
+        else:
+            return f"{len(self.__items_in_case)} items ({self.__current_weight} kg)"
 
     def add_item(self, item):
         if self.__current_weight + item.weight() <= self.maximum_weight:
@@ -38,20 +41,19 @@ if __name__ == "__main__":
 
     # print("Book:", book)
     # print("Phone:", phone)
-
     # test 2
-    # book = Item("ABC Book", 2)
-    # phone = Item("Nokia 3210", 1)
-    # brick = Item("Brick", 4)
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
 
-    # suitcase = Suitcase(5)
-    # print(suitcase)
+    suitcase = Suitcase(5)
+    print(suitcase)
 
-    # suitcase.add_item(book)
-    # print(suitcase)
+    suitcase.add_item(book)
+    print(suitcase)
 
-    # suitcase.add_item(phone)
-    # print(suitcase)
+    suitcase.add_item(phone)
+    print(suitcase)
 
-    # suitcase.add_item(brick)
-    # print(suitcase)
+    suitcase.add_item(brick)
+    print(suitcase)
