@@ -63,7 +63,7 @@ class CargoHold:
 
     def print_items(self):
         for suitcase in self.__suitcases:
-            print(suitcase)
+            suitcase.print_items()
 
 # test
 if __name__ == "__main__":
@@ -149,20 +149,29 @@ if __name__ == "__main__":
 
 
     # test 6
-    book = Item("ABC Book", 2)
-    phone = Item("Nokia 3210", 1)
-    brick = Item("Brick", 4)
+    # book = Item("ABC Book", 2)
+    # phone = Item("Nokia 3210", 1)
+    # brick = Item("Brick", 4)
 
-    adas_suitcase = Suitcase(10)
-    adas_suitcase.add_item(book)
-    adas_suitcase.add_item(phone)
+    # adas_suitcase = Suitcase(10)
+    # adas_suitcase.add_item(book)
+    # adas_suitcase.add_item(phone)
 
-    peters_suitcase = Suitcase(10)
-    peters_suitcase.add_item(brick)
+    # peters_suitcase = Suitcase(10)
+    # peters_suitcase.add_item(brick)
 
-    cargo_hold = CargoHold(1000)
-    cargo_hold.add_suitcase(adas_suitcase)
-    cargo_hold.add_suitcase(peters_suitcase)
+    # cargo_hold = CargoHold(1000)
+    # cargo_hold.add_suitcase(adas_suitcase)
+    # cargo_hold.add_suitcase(peters_suitcase)
 
-    print("The suitcases in the cargo hold contain the following items:")
-    cargo_hold.print_items()
+    # print("The suitcases in the cargo hold contain the following items:")
+    # cargo_hold.print_items()
+
+
+    # test 7
+    hold = CargoHold(100)
+    suitcase = Suitcase(25)
+    item = Item("ABC Book", 2)
+    suitcase.add_item(item)
+    hold.add_suitcase(suitcase)
+    hold.print_items()
