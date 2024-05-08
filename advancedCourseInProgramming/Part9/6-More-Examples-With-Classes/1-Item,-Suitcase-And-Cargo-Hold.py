@@ -12,15 +12,46 @@ class Item:
     
     def weight(self) -> int:
         return self.item_weight
+    
+class Suitcase:
+    def __init__(self, max_weight):
+        self.maximum_weight = max_weight
+        self.__current_weight = 0
+        self.__items_in_case = []
+
+    def __str__(self) -> str:
+        return f"{len(self.__items_in_case)} items ({self.__current_weight} kg)"
+
+    def add_item(self, item):
+        if self.__current_weight + item.weight() <= self.maximum_weight:
+            self.__current_weight += item.weight()
+            self.__items_in_case.append(item)
 
 # test
 if __name__ == "__main__":
     # test 1
-    book = Item("ABC Book", 2)
-    phone = Item("Nokia 3210", 1)
+    # book = Item("ABC Book", 2)
+    # phone = Item("Nokia 3210", 1)
 
-    print("Name of the book:", book.name())
-    print("Weight of the book:", book.weight())
+    # print("Name of the book:", book.name())
+    # print("Weight of the book:", book.weight())
 
-    print("Book:", book)
-    print("Phone:", phone)
+    # print("Book:", book)
+    # print("Phone:", phone)
+
+    # test 2
+    # book = Item("ABC Book", 2)
+    # phone = Item("Nokia 3210", 1)
+    # brick = Item("Brick", 4)
+
+    # suitcase = Suitcase(5)
+    # print(suitcase)
+
+    # suitcase.add_item(book)
+    # print(suitcase)
+
+    # suitcase.add_item(phone)
+    # print(suitcase)
+
+    # suitcase.add_item(brick)
+    # print(suitcase)
