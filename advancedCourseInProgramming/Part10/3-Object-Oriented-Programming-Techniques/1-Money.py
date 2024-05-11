@@ -15,6 +15,24 @@ class Money:
             return True
         else:
             return False
+    
+    def __lt__(self, another):
+        if (self.euros + self.cents / 100) < (another.euros + another.cents / 100):
+            return True
+        else:
+            return False 
+        
+    def __gt__(self, another):
+        if (self.euros + self.cents / 100) > (another.euros + another.cents / 100):
+            return True
+        else:
+            return False 
+        
+    def __ne__(self, another):
+        if (self.euros + self.cents / 100) != (another.euros + another.cents / 100):
+            return True
+        else:
+            return False 
 
 # test
 if __name__ == "__main__":
@@ -31,5 +49,16 @@ if __name__ == "__main__":
     # 4.10 eur
     # 2.05 eur
     # 4.10 eur
+    # False
+    # True
+
+    # test 2
+    e1 = Money(4, 10)
+    e2 = Money(2, 5)
+    print(e1 != e2)
+    print(e1 < e2)
+    print(e1 > e2)
+    # expected output:
+    # True
     # False
     # True
