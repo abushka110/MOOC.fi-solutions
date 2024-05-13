@@ -35,8 +35,14 @@ class SimpleDate:
 
         return SimpleDate(day, month, year)
     
+    def __sub__(self, other):
+        # if not isinstance(other, SimpleDate):
+        #     raise TypeError("unsupported operand type(s) for -: 'SimpleDate' and " + str(type(other)))
 
+        total_days_self = self.day + self.month * 30 + self.year * 360
+        total_days_other = other.day + other.month * 30 + other.year * 360
 
+        return abs(total_days_self - total_days_other)  
 
 # test
 if __name__ == "__main__":
@@ -61,3 +67,11 @@ if __name__ == "__main__":
     # print(d2)
     # print(d3)
     # print(d4)
+
+    # test 3
+    d1 = SimpleDate(4, 10, 2020)
+    d2 = SimpleDate(2, 11, 2020)
+    d3 = SimpleDate(28, 12, 1985)
+    print(d2-d1)
+    print(d1-d2)
+    print(d1-d3)
