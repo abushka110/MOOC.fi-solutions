@@ -25,6 +25,10 @@ class PhoneBook:
     def __init__(self):
         self.__persons = {}
 
+    # def add_number(self, name: str, number: str):
+    #     for person in self.__persons:
+    #         if person.
+
     def get_entry(self, name: str):
         if not name in self.__persons:
             return None
