@@ -1,5 +1,9 @@
 # solution
+def remove_smaller_than(numbers: list, limit: int) -> list:
+    return [number for number in numbers if number >= limit]
 
 # test
 if __name__ == "__main__":
-    pass  # Add your test code here
+    numbers = [1,65, 32, -6, 9, 11]
+    print(remove_smaller_than(numbers, 10))
+    print(remove_smaller_than([-4, 7, 8, -100], 0))
