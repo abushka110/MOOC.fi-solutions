@@ -1,5 +1,9 @@
 # solution
+def filter_forbidden(string: str, forbidden: str):
+    return "".join([character for character in string if character not in forbidden])
 
 # test
 if __name__ == "__main__":
-    pass  # Add your test code here
+    sentence = "Once! upon, a time: there was a python!??!?!"
+    filtered = filter_forbidden(sentence, "!?:,.")
+    print(filtered)
