@@ -1,5 +1,35 @@
+class Node:
+    """ Class is modeling single node in binary tree """
+    def __init__(self, value, left_child:'Node' = None, right_child:'Node' = None):
+        self.value = value
+        self.left_child = left_child
+        self.right_child = right_child
+
 # solution
+def greatest_node(root: Node):
+    greatest = root.value
+
+    if root.left_child != None:
+        left_greatest = greatest_node(root.left_child)
+        if left_greatest > greatest:
+            greatest = left_greatest
+
+    if root.right_child != None:
+        right_greatest = greatest_node(root.right_child)
+        if right_greatest > greatest:
+            greatest = right_greatest
+
+    return greatest
 
 # test
 if __name__ == "__main__":
-    pass  # Add your test code here
+    tree = Node(2)
+
+    tree.left_child = Node(3)
+    tree.left_child.left_child = Node(5)
+    tree.left_child.right_child = Node(8)
+
+    tree.right_child = Node(4)
+    tree.right_child.right_child = Node(11)
+
+    print(greatest_node(tree))
