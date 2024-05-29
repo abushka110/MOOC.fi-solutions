@@ -15,37 +15,25 @@ class Task:
     def mark_finished(self) -> bool:
         self.status = True
 
-    def __str__(self) -> str:
-        id = self.id
-        description = self.description
-        programmer = self.programmer
-        workload = self.workload
-        if self.status == True:
-            return f"{id}: {description} ({workload} hours), programmer {programmer} FINISHED"
-        else:
-            return f"{id}: {description} ({workload} hours), programmer {programmer} NOT FINISHED"
+    def __str__(self):
+        status = "NOT FINISHED" if not self.status else "FINISHED"
+        return f"{self.id}: {self.description} ({self.workload} hours), programmer {self.programmer} {status}"
 
 class OrderBook:
     def __init__(self):
-        self.orders = []
-        self.programmers_with_orders = []
+        self.__tasks = []
+
+    def programmers(self):
+        return list(set([t.programmer for t in self.__tasks]))
+    
+    def all_orders(self):
+        return self.__tasks
 
     def add_order(self, description, programmer, workload):
-        order = Task(description, programmer, workload)
-        if order not in self.orders:
-            self.orders.append(order)
-            
-        if order.programmer not in self.programmers_with_orders:
-            self.programmers_with_orders.append(order.programmer)
-
-    def all_orders(self):
-        return self.orders
-    
-    def programmers(self):
-        return self.programmers_with_orders
+        self.__tasks.append(Task(description, programmer, workload))
     
     def mark_finished(self, id: int):
-        for order in self.orders:
+        for order in self.__tasks:
             if order.id == id:
                 order.status = True
                 break
@@ -53,10 +41,23 @@ class OrderBook:
             raise ValueError("Wrong id")
         
     def finished_orders(self):
-        return [order for order in self.orders if order.status == True]
+        return [order for order in self.__tasks if order.status == True]
     
     def unfinished_orders(self):
-        return [order for order in self.orders if order.status == False]
+        return [order for order in self.__tasks if order.status == False]
+    
+    def status_of_programmer(self, programmer: str):
+        if programmer not in self.programmers():
+            raise ValueError("Programmer does not exists")
+        
+        finished_tasks = [t for t in self.__tasks if t.programmer == programmer and t.is_finished() ]
+        not_finished_tasks = [t for t in self.__tasks if t.programmer == programmer and not t.is_finished() ]
+ 
+        finished_hours = sum(t.workload for t in finished_tasks)
+        not_finished_hours = sum(t.workload for t in not_finished_tasks)
+ 
+        return (len(finished_tasks), len(not_finished_tasks), finished_hours, not_finished_hours)
+
 
 # test
 if __name__ == "__main__":
@@ -87,14 +88,23 @@ if __name__ == "__main__":
 
 
     # test 3
-    orders = OrderBook()
-    orders.add_order("program webstore", "Adele", 10)
-    orders.add_order("program mobile app for workload accounting", "Eric", 25)
-    orders.add_order("program app for practising mathematics", "Adele", 100)
-    orders.mark_finished(1)
-    orders.mark_finished(2)
-    for order in orders.all_orders():
-        print(order)
+    # orders = OrderBook()
+    # orders.add_order("program webstore", "Adele", 10)
+    # orders.add_order("program mobile app for workload accounting", "Eric", 25)
+    # orders.add_order("program app for practising mathematics", "Adele", 100)
+    # orders.mark_finished(1)
+    # orders.mark_finished(2)
+    # for order in orders.all_orders():
+    #     print(order)
 
     
     # test 4
+    orders = OrderBook()
+    orders.add_order("program webstore", "Adele", 10)
+    orders.add_order("program mobile app for workload accounting", "Adele", 25)
+    orders.add_order("program app for practising mathematics", "Adele", 100)
+    orders.add_order("program the next facebook", "Eric", 1000)
+    orders.mark_finished(1)
+    orders.mark_finished(2)
+    status = orders.status_of_programmer("Adele")
+    print(status)
