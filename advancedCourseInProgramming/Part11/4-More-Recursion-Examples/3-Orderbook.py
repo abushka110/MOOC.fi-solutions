@@ -25,16 +25,52 @@ class Task:
         else:
             return f"{id}: {description} ({workload} hours), programmer {programmer} NOT FINISHED"
 
+class OrderBook:
+    def __init__(self):
+        self.orders = []
+        self.programmers_with_orders = []
+
+    def add_order(self, description, programmer, workload):
+        order = Task(description, programmer, workload)
+        if order not in self.orders:
+            self.orders.append(order)
+            
+        if order.programmer not in self.programmers_with_orders:
+            self.programmers_with_orders.append(order.programmer)
+
+    def all_orders(self):
+        return self.orders
+    
+    def programmers(self):
+        return self.programmers_with_orders
+    
+
 # test
 if __name__ == "__main__":
-    t1 = Task("program hello world", "Eric", 3)
-    print(t1.id, t1.description, t1.programmer, t1.workload)
-    print(t1)
-    print(t1.is_finished())
-    t1.mark_finished()
-    print(t1)
-    print(t1.is_finished())
-    t2 = Task("program webstore", "Adele", 10)
-    t3 = Task("program mobile app for workload accounting", "Eric", 25)
-    print(t2)
-    print(t3)
+    # test 1
+    # t1 = Task("program hello world", "Eric", 3)
+    # print(t1.id, t1.description, t1.programmer, t1.workload)
+    # print(t1)
+    # print(t1.is_finished())
+    # t1.mark_finished()
+    # print(t1)
+    # print(t1.is_finished())
+    # t2 = Task("program webstore", "Adele", 10)
+    # t3 = Task("program mobile app for workload accounting", "Eric", 25)
+    # print(t2)
+    # print(t3)
+
+
+    # test 2
+    orders = OrderBook()
+    orders.add_order("program webstore", "Adele", 10)
+    orders.add_order("program mobile app for workload accounting", "Eric", 25)
+    orders.add_order("program app for practising mathematics", "Adele", 100)
+
+    for order in orders.all_orders():
+        print(order)
+
+    print()
+
+    for programmer in orders.programmers():
+        print(programmer)
