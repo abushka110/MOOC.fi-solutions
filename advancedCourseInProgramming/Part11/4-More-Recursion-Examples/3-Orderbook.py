@@ -44,6 +44,19 @@ class OrderBook:
     def programmers(self):
         return self.programmers_with_orders
     
+    def mark_finished(self, id: int):
+        for order in self.orders:
+            if order.id == id:
+                order.status = True
+                break
+        else:
+            raise ValueError("Wrong id")
+        
+    def finished_orders(self):
+        return [order for order in self.orders if order.status == True]
+    
+    def unfinished_orders(self):
+        return [order for order in self.orders if order.status == False]
 
 # test
 if __name__ == "__main__":
@@ -62,15 +75,26 @@ if __name__ == "__main__":
 
 
     # test 2
+    # orders = OrderBook()
+    # orders.add_order("program webstore", "Adele", 10)
+    # orders.add_order("program mobile app for workload accounting", "Eric", 25)
+    # orders.add_order("program app for practising mathematics", "Adele", 100)
+    # for order in orders.all_orders():
+    #     print(order)
+    # print()
+    # for programmer in orders.programmers():
+    #     print(programmer)
+
+
+    # test 3
     orders = OrderBook()
     orders.add_order("program webstore", "Adele", 10)
     orders.add_order("program mobile app for workload accounting", "Eric", 25)
     orders.add_order("program app for practising mathematics", "Adele", 100)
-
+    orders.mark_finished(1)
+    orders.mark_finished(2)
     for order in orders.all_orders():
         print(order)
 
-    print()
-
-    for programmer in orders.programmers():
-        print(programmer)
+    
+    # test 4
