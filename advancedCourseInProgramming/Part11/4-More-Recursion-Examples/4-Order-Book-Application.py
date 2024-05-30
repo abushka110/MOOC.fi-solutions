@@ -79,44 +79,47 @@ def software_app():
 
     command = int(input("command: "))
     while command != 0:
-        if command == 1:
-            description = input("description: ")
-            programmer_workload = input("programmer and workload estimate: ")
-            programmer = programmer_workload.split()[0]
-            workload = int(programmer_workload.split()[1])
-            orders.add_order(description, programmer, workload)
-            print("added!")
-            print()
-        elif command == 2:
-            tasks_finished = orders.finished_orders()
-            if len(tasks_finished) == 0:
-                print("no finished tasks")
-            else:
-                for order in tasks_finished:
-                    print(order)
-            print()
-        elif command == 3:
-            tasks_finished = orders.unfinished_orders()
-            if len(tasks_finished) == 0:
-                print("no unfinished tasks")
-            else:
-                for order in tasks_finished:
-                    print(order)
-            print()
-        elif command == 4:
-            order_id = int(input("id: "))
-            orders.mark_finished(order_id)
-            print("marked as finished")
-            print()
-        elif command == 5:
-            programmers = orders.programmers()
-            for programmer in programmers:
-                print(programmer)
-            print()
-        elif command == 6:
-            programmer = input("programmer: ")
-            programmer_info = orders.status_of_programmer(programmer)
-            print(f"tasks: finished {programmer_info[0]} not finished {programmer_info[1]}, hours: done {programmer_info[2]} scheduled {programmer_info[3]}")
+        try:
+            if command == 1:
+                description = input("description: ")
+                programmer_workload = input("programmer and workload estimate: ")
+                programmer = programmer_workload.split()[0]
+                workload = int(programmer_workload.split()[1])
+                orders.add_order(description, programmer, workload)
+                print("added!")
+                print()
+            elif command == 2:
+                tasks_finished = orders.finished_orders()
+                if len(tasks_finished) == 0:
+                    print("no finished tasks")
+                else:
+                    for order in tasks_finished:
+                        print(order)
+                print()
+            elif command == 3:
+                tasks_finished = orders.unfinished_orders()
+                if len(tasks_finished) == 0:
+                    print("no unfinished tasks")
+                else:
+                    for order in tasks_finished:
+                        print(order)
+                print()
+            elif command == 4:
+                order_id = int(input("id: "))
+                orders.mark_finished(order_id)
+                print("marked as finished")
+                print()
+            elif command == 5:
+                programmers = orders.programmers()
+                for programmer in programmers:
+                    print(programmer)
+                print()
+            elif command == 6:
+                programmer = input("programmer: ")
+                programmer_info = orders.status_of_programmer(programmer)
+                print(f"tasks: finished {programmer_info[0]} not finished {programmer_info[1]}, hours: done {programmer_info[2]} scheduled {programmer_info[3]}")
+        except (ValueError, IndexError, KeyError):
+            print("erroneous input")
 
 
         command = int(input("command: "))
