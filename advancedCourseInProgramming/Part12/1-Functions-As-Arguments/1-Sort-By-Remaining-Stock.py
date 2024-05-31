@@ -1,9 +1,8 @@
 # solution
 def sort_by_remaining_stock(items: list):
-    items_dict = {item[2] : item for item in items}
-    peaces_remain = [peaces for peaces in items_dict.keys()]
-    peaces_remain = sorted(peaces_remain)
-    return [items_dict[peaces_count] for peaces_count in peaces_remain]
+    def order_by_saldo(item):
+        return item[2]
+    return sorted(items, key=order_by_saldo)
 
 # test
 if __name__ == "__main__":
