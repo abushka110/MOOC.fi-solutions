@@ -31,11 +31,17 @@ class ClimbingArea:
         return f"{self.name} {self.routes()} routes, hardest {hardest_route.grade}"
 
 # solution
-def sort_by_number_of_routes(areas: ClimbingArea):
+def sort_by_number_of_routes(areas):
     def get_area_num_roots(area: ClimbingArea):
         return area.routes()
     
     return sorted(areas, key=get_area_num_roots)
+
+def sort_by_most_difficult(areas):
+    def area_difficulty(area: ClimbingArea):
+        return (area.hardest_route().grade)
+    
+    return sorted(areas, key=area_difficulty, reverse=True)
 
 # test
 if __name__ == "__main__":
@@ -53,6 +59,12 @@ if __name__ == "__main__":
 
     # test 1
     # ca1, ca2 and ca3 declared as above
+    # areas = [ca1, ca2, ca3]
+    # for area in sort_by_number_of_routes(areas):
+    #     print(area)
+
+    # test 2
+    # ca1, ca2 and ca3 declared as above
     areas = [ca1, ca2, ca3]
-    for area in sort_by_number_of_routes(areas):
+    for area in sort_by_most_difficult(areas):
         print(area)
