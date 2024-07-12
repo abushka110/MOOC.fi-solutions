@@ -1,14 +1,6 @@
 # solution
 def search(products: list, criterion: callable):
-    # create new list
-    new_list = []
-
-    # check if product fulfil the criterion
-    for product in products:
-        if criterion(product):
-            new_list.append(product)
-    
-    return new_list
+    return [product for product in products if criterion(product)]
 
 # test
 if __name__ == "__main__":
