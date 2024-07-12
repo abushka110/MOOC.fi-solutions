@@ -34,6 +34,17 @@ def least_minutes(players_list):
 
     return sorted(players_list, key=get_minutes)[0]
 
+# model solution
+# def most_goals(ballplayers: list):
+#     return max(ballplayers, key=lambda p: p.goals).name
+ 
+# def most_points(ballplayers: list):
+#     best = max(ballplayers, key=lambda p: p.goals + p.passes)
+#     return (best.name, best.number)
+ 
+# def least_minutes(ballplayers: list):
+#     return min(ballplayers, key=lambda p: p.minutes)
+
 # test
 if __name__ == "__main__":
     player1 = BallPlayer("Archie Bonkers", 13, 5, 12, 46)
