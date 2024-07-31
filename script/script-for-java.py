@@ -3,7 +3,7 @@ import os
 # Function to format the directory or file name
 def format_name(name):
     name = name.replace(':', '').replace('.', '')
-    return '-'.join(word.capitalize() for word in name.split())
+    return ''.join(word.capitalize() for word in name.split())
 
 # Open the file
 with open('filesFolders.txt', 'r') as f:
