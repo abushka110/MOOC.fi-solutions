@@ -31,6 +31,10 @@ for line in lines:
 
         # Remove 'Programming exercise: ' from the file name
         line = line.replace('Programming exercise: ', '')
+        line = line[1:]
         
         # Create a Python file in the current directory
         file_path = os.path.join(current_dir, f"{format_name(line)}.java")
+        with open(file_path, 'w') as f:
+            # Add lines to each created Python file
+            f.write("")
