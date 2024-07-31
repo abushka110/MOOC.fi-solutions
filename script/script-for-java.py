@@ -34,9 +34,3 @@ for line in lines:
         
         # Create a Python file in the current directory
         file_path = os.path.join(current_dir, f"{format_name(line)}.java")
-        with open(file_path, 'w') as f:
-            # Add lines to each created Python file
-            f.write("# solution\n\n")
-            f.write("# test\n")
-            f.write("if __name__ == \"__main__\":\n")
-            f.write("    pass  # Add your test code here\n")
