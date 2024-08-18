@@ -1,5 +1,8 @@
-# solution
+#!/usr/bin/env python3
 
-# test
+def main():
+    for i in range(0, 11):
+        print(f"4 multiplied by {i} is {4*i}")
+
 if __name__ == "__main__":
-    pass  # Add your test code here
+    main()
